@@ -43,3 +43,18 @@ def main():
     elif process == "decrypt":
         plaintext = decrypt(message, text, shift)
         print("\ndecrypted plaintext = \n {}".format(plaintext))
+
+
+def load_file(infile):
+    """Read and return text file as a string of lowercase characters."""
+    with open(infile) as f:
+        loaded_string = f.read().lower()
+    return loaded_string
+
+
+def make_dict(text, shift):
+    """Return dictionary of characters and shifted indexes."""
+    char_dict = defaultdict(list)
+    for index, char in enumerate(text):
+        char_dict[char].append(index + shift)
+    return char_dict
