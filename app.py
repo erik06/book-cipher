@@ -58,3 +58,18 @@ def make_dict(text, shift):
     for index, char in enumerate(text):
         char_dict[char].append(index + shift)
     return char_dict
+
+
+def encrypt(message, char_dict):
+    """Return list of indexes representing characters in a message"""
+    encrypted = []
+    for char in message.lower():
+        if len(char_dict[char]) > 1:
+            index = random.choice(char_dict[char])
+        elif len(char_dict[char]) == 1:  # Random.choice fails if only one choice
+            index = char_dict[char][0]
+        elif len(char_dict[char]) == 0:
+            print("\nCharacter {} not in dictionary.".format(char), file=sys.stderr)
+            continue
+        encrypted.append(index)
+    return encrypted
