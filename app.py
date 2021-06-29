@@ -73,3 +73,14 @@ def encrypt(message, char_dict):
             continue
         encrypted.append(index)
     return encrypted
+
+
+def decrypt(message, text, shift):
+    """Decrypt ciphertext list and return plaintext string."""
+    plaintext = ""
+    indexes = [
+        s.replace(",", "").replace("[", "").replace("]", "") for s in message.split()
+    ]
+    for i in indexes:
+        plaintext += text[int(i) - shift]
+    return plaintext
