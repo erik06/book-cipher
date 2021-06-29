@@ -84,3 +84,14 @@ def decrypt(message, text, shift):
     for i in indexes:
         plaintext += text[int(i) - shift]
     return plaintext
+
+
+def check_for_fail(ciphertext):
+    """Return True if ciphertext contains any duplicate keys."""
+    check = [k for k, v in Counter(ciphertext).items() if v > 1]
+    if len(check) > 0:
+        return True
+
+
+if __name__ == "__main__":
+    main()
